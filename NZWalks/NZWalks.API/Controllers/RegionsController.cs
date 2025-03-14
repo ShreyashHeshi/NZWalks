@@ -6,6 +6,7 @@ using NZWalks.API.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using NZWalks.API.Repositories;
 using AutoMapper;
+using NZWalks.API.CustomActionFilter;
 
 namespace NZWalks.API.Controllers
 {
@@ -96,82 +97,103 @@ namespace NZWalks.API.Controllers
         // to create new region in database
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
-            // map dto to domain model
-            /*var regionDomainModel = new Region
+            //if(ModelState.IsValid)  // modelstate comes from asp.netcoremvc.modelbinding.modelstatedictionary
+            //{
+                // map dto to domain model
+                /*var regionDomainModel = new Region
+                {
+                    Code= addRegionRequestDto.Code,
+                    Name= addRegionRequestDto.Name,
+                    RegionImageUrl= addRegionRequestDto.RegionImageUrl
+                };*/
+                var regionDomainModel = mapper.Map<Region>(addRegionRequestDto);
+
+
+
+                // use domain model to create region 
+                // await dbContext.Regions.AddAsync(regionDomainModel);
+                // await dbContext.SaveChangesAsync();
+
+                // use domain model to create region
+                regionDomainModel = await regionRepositary.CreateAsync(regionDomainModel);
+
+                // map domain model back to DTO
+                /*var regionDto = new RegionDTO
+                {
+                    Id = regionDomainModel.Id,
+                    Code = regionDomainModel.Code,
+                    Name = regionDomainModel.Name,
+                    RegionImageUrl = regionDomainModel.RegionImageUrl
+                };*/
+                var regionDto = mapper.Map<RegionDTO>(regionDomainModel);
+
+
+
+                // return 201 reponse created
+                return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
+
+            /*}
+            else
             {
-                Code= addRegionRequestDto.Code,
-                Name= addRegionRequestDto.Name,
-                RegionImageUrl= addRegionRequestDto.RegionImageUrl
-            };*/
-            var regionDomainModel = mapper.Map<Region>(addRegionRequestDto);
+                return BadRequest(ModelState);
+            }*/
 
-
-
-            // use domain model to create region 
-            // await dbContext.Regions.AddAsync(regionDomainModel);
-            // await dbContext.SaveChangesAsync();
-
-            // use domain model to create region
-            regionDomainModel = await regionRepositary.CreateAsync(regionDomainModel);
-
-            // map domain model back to DTO
-            /*var regionDto = new RegionDTO
-            {
-                Id = regionDomainModel.Id,
-                Code = regionDomainModel.Code,
-                Name = regionDomainModel.Name,
-                RegionImageUrl = regionDomainModel.RegionImageUrl
-            };*/
-            var regionDto = mapper.Map<RegionDTO>(regionDomainModel);
-
-
-
-            // return 201 reponse created
-            return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
+           
 
         }
 
         // PUT - Update domain in database
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id,  [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
+            //if (ModelState.IsValid)
+            //{
+                // map dto to domain model
+                /*var regionDomainModel = new Region
+                {
+                    Code= updateRegionRequestDto.Code,
+                    Name= updateRegionRequestDto.Name,
+                    RegionImageUrl= updateRegionRequestDto.RegionImageUrl
+                };*/
+                var regionDomainModel = mapper.Map<Region>(updateRegionRequestDto);
 
-            // map dto to domain model
-            /*var regionDomainModel = new Region
+
+
+                // check if region exists
+                //var regionDomainModel = await dbContext.Regions.FirstOrDefaultAsync(x=>x.Id == id);
+                regionDomainModel = await regionRepositary.UpdateAsync(id, regionDomainModel);
+
+                if (regionDomainModel == null)
+                {
+                    return NotFound();
+                }
+
+
+
+                // convert domain to dto
+                /*var regionDto = new RegionDTO
+                {
+                    Id = regionDomainModel.Id,
+                    Code = regionDomainModel.Code,
+                    Name = regionDomainModel.Name,
+                    RegionImageUrl = regionDomainModel.RegionImageUrl
+                };*/
+                var regionDto = mapper.Map<RegionDTO>(regionDomainModel);
+
+                return Ok(regionDto);
+
+            /*}
+            else
             {
-                Code= updateRegionRequestDto.Code,
-                Name= updateRegionRequestDto.Name,
-                RegionImageUrl= updateRegionRequestDto.RegionImageUrl
-            };*/
-            var regionDomainModel = mapper.Map<Region>(updateRegionRequestDto);
+                return BadRequest(ModelState);
+            }*/
 
-
-
-            // check if region exists
-            //var regionDomainModel = await dbContext.Regions.FirstOrDefaultAsync(x=>x.Id == id);
-            regionDomainModel = await regionRepositary.UpdateAsync(id, regionDomainModel);
-            
-            if (regionDomainModel == null)
-            {
-                return NotFound();
-            }
-
-
-
-            // convert domain to dto
-            /*var regionDto = new RegionDTO
-            {
-                Id = regionDomainModel.Id,
-                Code = regionDomainModel.Code,
-                Name = regionDomainModel.Name,
-                RegionImageUrl = regionDomainModel.RegionImageUrl
-            };*/
-            var regionDto = mapper.Map<RegionDTO>(regionDomainModel);
-
-            return Ok(regionDto);
+           
 
         }
 
