@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.Models.Domain;
 using NZWalks.API.Models.DTO;
 using NZWalks.API.Repositories;
+using System.Collections.Specialized;
 
 namespace NZWalks.API.Controllers
 {
@@ -44,10 +45,17 @@ namespace NZWalks.API.Controllers
         }
 
         // get walks 
+        // /api/walks?filterOn=Name&filterQuery=Track&sortBy=Name&isAscending=true&pageNumber=1&pageSize=10                
+        // after walks first query parameter is filter on query param
+        // filter on basically say what column do you filter on and after that receive query user wants to filter on
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery,
+            [FromQuery] string? sortBy, [FromQuery] bool? isAscending,
+            [FromQuery] int pageNumber=1, [FromQuery] int pageSize=1000)
         {
-            var walkDomainModel = await walkRepositary.GetAllAsync();
+            var walkDomainModel = await walkRepositary.GetAllAsync(filterOn,filterQuery, sortBy, isAscending ?? true, pageNumber,pageSize); // pass query parameters here imp
+            // isAscending is nullable boolean but repo accept only boolean value so if nullable then do isAscending true
+            // so sending is always true if its null value
             return Ok(mapper.Map<List<WalkDTO>>(walkDomainModel));
         }
 

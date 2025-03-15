@@ -5,7 +5,9 @@ namespace NZWalks.API.Data
 {
     public class NZWalksDbContext: DbContext
     {
-        public NZWalksDbContext(DbContextOptions dbContextOptions): base(dbContextOptions)
+        public NZWalksDbContext(DbContextOptions<NZWalksDbContext> dbContextOptions): base(dbContextOptions) 
+            // here 500 error cause DbContext is non-generic type so pass type of dbcontext
+            // so no ambiguity to which dbcontext is to be called
         {
 
             
