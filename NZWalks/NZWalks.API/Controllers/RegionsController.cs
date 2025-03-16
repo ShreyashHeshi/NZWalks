@@ -13,7 +13,7 @@ namespace NZWalks.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class RegionsController : ControllerBase
     {
         private readonly NZWalksDbContext dbContext;
@@ -31,7 +31,7 @@ namespace NZWalks.API.Controllers
         // get all regions
         // https://localhost:7084/api/Regions
         [HttpGet]
-
+        [Authorize(Roles ="Reader")]
         // task is return type of async. every return type is wrapped inside a task
         public async Task<IActionResult> GetAll()
         {
@@ -67,6 +67,7 @@ namespace NZWalks.API.Controllers
 
         [HttpGet]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Reader")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             //var region = dbContext.Regions.Find(id);
@@ -100,6 +101,7 @@ namespace NZWalks.API.Controllers
 
         [HttpPost]
         [ValidateModel]
+        [Authorize(Roles ="Writer")]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
             //if(ModelState.IsValid)  // modelstate comes from asp.netcoremvc.modelbinding.modelstatedictionary
@@ -151,6 +153,7 @@ namespace NZWalks.API.Controllers
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
+        [Authorize(Roles = "Writer,Reader")]    
         public async Task<IActionResult> Update([FromRoute] Guid id,  [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
             //if (ModelState.IsValid)
@@ -202,6 +205,7 @@ namespace NZWalks.API.Controllers
         //Delete Region
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             // find region in database

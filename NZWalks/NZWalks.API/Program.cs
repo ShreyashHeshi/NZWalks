@@ -6,15 +6,62 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.FileProviders;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+var logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .MinimumLevel.Information()               // debug,information, warning,error
+    .CreateLogger();
+
+
+builder.Logging.ClearProviders();  // this will clear out any provider that we have injected till now
+builder.Logging.AddSerilog(logger);
+
+
+
 builder.Services.AddControllers();
+
+builder.Services.AddHttpContextAccessor(); // to find folder file location in image handling
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "NZ Walks Api", Version = "v1" });
+    options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        In = ParameterLocation.Header,   // ParameterLocation from Microsoft.OpenApi.Models
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = JwtBearerDefaults.AuthenticationScheme
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference=new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id=JwtBearerDefaults.AuthenticationScheme
+                },
+                Scheme="Oauth2",
+                Name=JwtBearerDefaults.AuthenticationScheme,
+                In = ParameterLocation.Header
+
+            },
+            new List<string>()
+        }
+    });
+    
+});
 
 builder.Services.AddDbContext<NZWalksDbContext>(options =>
 
@@ -25,6 +72,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksAuthConne
 
 builder.Services.AddScoped<IRegionRepositary,SQLRegionRepositary>();
 builder.Services.AddScoped<IWalkRepositary,SQLWalkRepositary>();
+builder.Services.AddScoped<ITokenRepositary,TokenRepositary>();
+builder.Services.AddScoped<IImageRepositary,LocalImageRepositary>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
@@ -78,6 +127,13 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider= new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"Images")),
+    RequestPath="/Images"
+    // https://localhost:1234/Images
+});
 
 app.MapControllers();
 

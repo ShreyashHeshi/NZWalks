@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.Models.DTO;
+using NZWalks.API.Repositories;
 
 namespace NZWalks.API.Controllers
 {
@@ -10,10 +11,12 @@ namespace NZWalks.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> userManager;
+        private readonly ITokenRepositary tokenRepositary;
 
-        public AuthController(UserManager<IdentityUser> userManager)
+        public AuthController(UserManager<IdentityUser> userManager, ITokenRepositary tokenRepositary)
         {
             this.userManager = userManager;
+            this.tokenRepositary = tokenRepositary;
         }
 
 
@@ -46,5 +49,42 @@ namespace NZWalks.API.Controllers
 
             return BadRequest("Something went wrong");
         }
+
+        // POST: /api/Auth/Login
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequestDto)
+        {
+            var user = await userManager.FindByEmailAsync(loginRequestDto.UserName);
+
+            if (user != null)
+            {
+                var checkPasswordResult = await userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+
+                if (checkPasswordResult)
+                {
+                    // Get Roles for this user
+                    var roles = await userManager.GetRolesAsync(user);
+
+                    if(roles != null)
+                    {
+                        // Create Token
+                        var jwtToken = tokenRepositary.CreateJWTToken(user,roles.ToList());
+
+                        var response = new LoginResponseDto
+                        {
+                            JwtToken = jwtToken
+                        };
+                        return Ok(response);
+                    }
+
+
+                    return Ok();
+                }
+            }
+
+            return BadRequest("Username or Password incorrect");
+        }
+
     }
 }
