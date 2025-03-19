@@ -56,6 +56,10 @@ namespace NZWalks.API.Controllers
             var walkDomainModel = await walkRepositary.GetAllAsync(filterOn,filterQuery, sortBy, isAscending ?? true, pageNumber,pageSize); // pass query parameters here imp
             // isAscending is nullable boolean but repo accept only boolean value so if nullable then do isAscending true
             // so sending is always true if its null value
+
+            // Create an exception
+            //throw new Exception("This is new excption");
+
             return Ok(mapper.Map<List<WalkDTO>>(walkDomainModel));
         }
 

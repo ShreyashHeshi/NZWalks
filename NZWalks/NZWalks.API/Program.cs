@@ -9,47 +9,54 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.FileProviders;
 using Serilog;
+using NZWalks.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
+// webapplication is class which provide static createbuilder method
+// webapplication is static class defined in Microsoft.AspNetCore.Builder
+
 
 // Add services to the container.
 
-var logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .MinimumLevel.Information()               // debug,information, warning,error
-    .CreateLogger();
+var logger = new LoggerConfiguration()                                         // LoggerConfiguration is class from serilog pakage
+    .WriteTo.Console()                                                         // serilog.sinks.console
+    .WriteTo.File("Logs/NzWalks_Log.txt",rollingInterval: RollingInterval.Day) //rollingInterval creates new file after day where exception logged in txt file. Minute option also there
+    .MinimumLevel.Warning()                                                    // debug,information, warning,error
+    .CreateLogger();                                                           // creates the logger instance
 
 
-builder.Logging.ClearProviders();  // this will clear out any provider that we have injected till now
-builder.Logging.AddSerilog(logger);
+builder.Logging.ClearProviders();    // this will clear out in build logging provider
+builder.Logging.AddSerilog(logger);  // logging is instance of ILoggingBuilder from Microsoft.Extensions.Logging
 
 
 
 builder.Services.AddControllers();
+// Services is instance of IServiceCollection
+// AddController() is extension method for Microsoft.Extensions.DependencyInjection
 
-builder.Services.AddHttpContextAccessor(); // to find folder file location in image handling
+builder.Services.AddHttpContextAccessor(); // helps to use httpcontext outside controller like handling image path
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer(); 
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "NZ Walks Api", Version = "v1" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "NZ Walks Api", Version = "v1" });            // OpenApiInfo from Microsoft.OpenApi.Models.OpenApiInfo
     options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
     {
         Name = "Authorization",
-        In = ParameterLocation.Header,   // ParameterLocation from Microsoft.OpenApi.Models
+        In = ParameterLocation.Header,                                                               // ParameterLocation from Microsoft.OpenApi.Models
         Type = SecuritySchemeType.ApiKey,
-        Scheme = JwtBearerDefaults.AuthenticationScheme
+        Scheme = JwtBearerDefaults.AuthenticationScheme 
     });
 
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement   // Microsoft.OpenApi.Models.OpenApiSecurityRequirement
     {
-        {
-            new OpenApiSecurityScheme
+        {                                                           
+            new OpenApiSecurityScheme                               //Microsoft.OpenApi.Models.OpenApiSecurityScheme
             {
-                Reference=new OpenApiReference
+                Reference=new OpenApiReference                      // Microsoft.OpenApi.Models.OpenApiReference
                 {
-                    Type=ReferenceType.SecurityScheme,
+                    Type=ReferenceType.SecurityScheme,              
                     Id=JwtBearerDefaults.AuthenticationScheme
                 },
                 Scheme="Oauth2",
@@ -122,6 +129,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 

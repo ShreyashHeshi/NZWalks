@@ -8,6 +8,7 @@ using NZWalks.API.Repositories;
 using AutoMapper;
 using NZWalks.API.CustomActionFilter;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.Json;
 
 namespace NZWalks.API.Controllers
 {
@@ -19,22 +20,28 @@ namespace NZWalks.API.Controllers
         private readonly NZWalksDbContext dbContext;
         private readonly IRegionRepositary regionRepositary;
         private readonly IMapper mapper;
+        private readonly ILogger<RegionsController> logger;
 
         // imapper is interface from automapper
-        public RegionsController(NZWalksDbContext dbContext, IRegionRepositary regionRepositary, IMapper mapper)
+        public RegionsController(NZWalksDbContext dbContext, IRegionRepositary regionRepositary, IMapper mapper, ILogger<RegionsController> logger)
         {
             this.dbContext = dbContext;
             this.regionRepositary = regionRepositary;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         // get all regions
         // https://localhost:7084/api/Regions
         [HttpGet]
-        [Authorize(Roles ="Reader")]
+        //[Authorize(Roles ="Reader")]
         // task is return type of async. every return type is wrapped inside a task
         public async Task<IActionResult> GetAll()
         {
+
+            logger.LogInformation("Get all action method was involked");
+
+
             //Get data from database - domain models
             // await is used to ensure that this is async call
             //var regionsDomain = await dbContext.Regions.ToListAsync(); // this dbcontext method
@@ -55,6 +62,9 @@ namespace NZWalks.API.Controllers
             //        RegionImageUrl = regionDomain.RegionImageUrl
             //   });
             //}
+
+            logger.LogInformation($"Finished GetAllRegions request with data: {JsonSerializer.Serialize(regionsDomain)}");       
+                // convert domain object into json object using system.text.json so $ is used
 
             // map domain models to dtos
             var regionsDto = mapper.Map<List<RegionDTO>>(regionsDomain);
