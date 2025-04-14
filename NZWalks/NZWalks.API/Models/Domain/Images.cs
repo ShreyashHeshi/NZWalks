@@ -2,7 +2,7 @@
 
 namespace NZWalks.API.Models.Domain
 {
-    public class Image
+    public class Images
     {
         public Guid Id { get; set; }
 

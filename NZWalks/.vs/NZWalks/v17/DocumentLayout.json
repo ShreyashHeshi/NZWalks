@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "I:\\NZWalks\\NZWalks\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{05A0A1A7-67A5-4B58-B874-A390F3863028}|NZWalks.Test\\NZWalks.Test.csproj|i:\\nzwalks\\nzwalks\\nzwalks.test\\controllertests\\regioncontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{05A0A1A7-67A5-4B58-B874-A390F3863028}|NZWalks.Test\\NZWalks.Test.csproj|solutionrelative:nzwalks.test\\controllertests\\regioncontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|i:\\nzwalks\\nzwalks\\nzwalks.api\\models\\domain\\region.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|solutionrelative:nzwalks.api\\models\\domain\\region.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|i:\\nzwalks\\nzwalks\\nzwalks.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|solutionrelative:nzwalks.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|i:\\nzwalks\\nzwalks\\nzwalks.api\\controllers\\pdfexportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|solutionrelative:nzwalks.api\\controllers\\pdfexportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,8 +17,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 361,
-          "SelectedChildIndex": 3,
+          "DockedHeight": 592,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,59 +27,56 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 22,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Region.cs",
-              "DocumentMoniker": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Models\\Domain\\Region.cs",
-              "RelativeDocumentMoniker": "NZWalks.API\\Models\\Domain\\Region.cs",
-              "ToolTip": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Models\\Domain\\Region.cs",
-              "RelativeToolTip": "NZWalks.API\\Models\\Domain\\Region.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "PdfExportController.cs",
+              "DocumentMoniker": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\PdfExportController.cs",
+              "RelativeDocumentMoniker": "NZWalks.API\\Controllers\\PdfExportController.cs",
+              "ToolTip": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\PdfExportController.cs",
+              "RelativeToolTip": "NZWalks.API\\Controllers\\PdfExportController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T08:33:42.635Z",
+              "WhenOpened": "2025-04-14T12:36:30.161Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RegionControllerTests.cs",
-              "DocumentMoniker": "I:\\NZWalks\\NZWalks\\NZWalks.Test\\ControllerTests\\RegionControllerTests.cs",
-              "RelativeDocumentMoniker": "NZWalks.Test\\ControllerTests\\RegionControllerTests.cs",
-              "ToolTip": "I:\\NZWalks\\NZWalks\\NZWalks.Test\\ControllerTests\\RegionControllerTests.cs",
-              "RelativeToolTip": "NZWalks.Test\\ControllerTests\\RegionControllerTests.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAAABwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T07:09:36.649Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "RegionsController.cs",
               "DocumentMoniker": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\RegionsController.cs",
               "RelativeDocumentMoniker": "NZWalks.API\\Controllers\\RegionsController.cs",
               "ToolTip": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\RegionsController.cs",
               "RelativeToolTip": "NZWalks.API\\Controllers\\RegionsController.cs",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAgwO8AAAAFAAAA",
+              "ViewState": "AQIAACgAAAAAAAAAAAAgwDEAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T06:50:27.742Z",
+              "WhenOpened": "2025-04-14T12:35:41.418Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedHeight": 39,
+          "DockedHeight": 4,
           "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

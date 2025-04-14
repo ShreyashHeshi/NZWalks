@@ -5,7 +5,8 @@ namespace NZWalks.API.Repositories
 {
     public interface IRegionRepositary
     {
-        Task<List<Region>> GetAllAsync();
+        Task<int> GetTotalCountAsync();
+        Task<List<Region>> GetAllAsync(int page, int pageSize);
 
         Task<Region?> GetByIdAsync(Guid id);
         // Task has return type of region

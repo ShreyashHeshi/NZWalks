@@ -1,0 +1,94 @@
+.login-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container::before {
+    content: "";
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    background: url("https://www.brahmandtour.com/img/domastic-trekking-top-banner.jpg") no-repeat center center/cover;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.box {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 0 auto;
+    width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+.btn-success {
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.box form button:hover {
+    transform: scale(1.05);
+}
+
+.text-danger {
+    font-size: 0.8rem;
+}
+
+a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h4 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h2.text-center {
+    color: #333;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    animation: colorShift 2s infinite alternate;
+}
+
+@keyframes colorShift {
+    0% {
+        color: #5cfdf0;
+    }
+
+    /* Vibrant green */
+    100% {
+        color: #5633f7;
+    }
+
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}

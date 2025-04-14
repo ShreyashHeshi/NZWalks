@@ -10,6 +10,14 @@ using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.FileProviders;
 using Serilog;
 using NZWalks.API.Middlewares;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+using FluentValidation.AspNetCore;
+using NZWalks.API.FluentValidation;
+//using Serilog.Formatting.Json;
+using Serilog.Events;
+using Serilog.Sinks.Elasticsearch;
+
 
 var builder = WebApplication.CreateBuilder(args);
 // webapplication is class which provide static createbuilder method
@@ -18,19 +26,39 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-var logger = new LoggerConfiguration()                                         // LoggerConfiguration is class from serilog pakage
-    .WriteTo.Console()                                                         // serilog.sinks.console
-    .WriteTo.File("Logs/NzWalks_Log.txt",rollingInterval: RollingInterval.Day) //rollingInterval creates new file after day where exception logged in txt file. Minute option also there
-    .MinimumLevel.Warning()                                                    // debug,information, warning,error
-    .CreateLogger();                                                           // creates the logger instance
+//var logger = new LoggerConfiguration()                                         // LoggerConfiguration is class from serilog pakage
+//    .WriteTo.Console()                                                         // serilog.sinks.console
+//    .WriteTo.File("Logs/NzWalks_Log.txt",rollingInterval: RollingInterval.Day) //rollingInterval creates new file after day where exception logged in txt file. Minute option also there
+//    .MinimumLevel.Warning()                                                    // debug,information, warning,error
+//    .CreateLogger();                                                           // creates the logger instance
 
+// Configure Serilog
+/*var logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/NzWalks_Log.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
+    {
+        AutoRegisterTemplate = true,
+        IndexFormat = "nzwalks-logs-{0:yyyy.MM.dd}",
+        MinimumLogEventLevel = LogEventLevel.Information
+    })
+    .MinimumLevel.Warning()
+    .CreateLogger();
 
 builder.Logging.ClearProviders();    // this will clear out in build logging provider
-builder.Logging.AddSerilog(logger);  // logging is instance of ILoggingBuilder from Microsoft.Extensions.Logging
+builder.Logging.AddSerilog(logger);  // logging is instance of ILoggingBuilder from Microsoft.Extensions.Logging*/
+// Configure Serilog from appsettings.json
+builder.Host.UseSerilog((ctx, config) =>
+{
+    config.ReadFrom.Configuration(ctx.Configuration);
+});
 
 
 
-builder.Services.AddControllers();
+
+
+builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 // Services is instance of IServiceCollection
 // AddController() is extension method for Microsoft.Extensions.DependencyInjection
 
@@ -81,6 +109,9 @@ builder.Services.AddScoped<IRegionRepositary,SQLRegionRepositary>();
 builder.Services.AddScoped<IWalkRepositary,SQLWalkRepositary>();
 builder.Services.AddScoped<ITokenRepositary,TokenRepositary>();
 builder.Services.AddScoped<IImageRepositary,LocalImageRepositary>();
+builder.Services.AddScoped<IPdfGenerator, PdfGenerator>();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
@@ -120,8 +151,23 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) //  J
          // SymmetricSecurityKey comes from Microsoft.IdentityModel.Tokens used for handling authentication and authorization
      });
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200") // Allow Angular frontend
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();
+        });
+});
 
 var app = builder.Build();
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -130,7 +176,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseMiddleware<ExceptionHandlerMiddleware>();
+
+// Use CORS before authorization and controllers
+app.UseCors("AllowAngularApp");
 
 app.UseHttpsRedirection();
 
@@ -143,6 +193,8 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath="/Images"
     // https://localhost:1234/Images
 });
+
+app.UseSerilogRequestLogging();
 
 app.MapControllers();
 

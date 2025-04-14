@@ -188,3 +188,5 @@ I:\NZWalks\NZWalks\NZWalks.API\obj\Release\net8.0\refint\NZWalks.API.dll
 I:\NZWalks\NZWalks\NZWalks.API\obj\Release\net8.0\NZWalks.API.pdb
 I:\NZWalks\NZWalks\NZWalks.API\obj\Release\net8.0\NZWalks.API.genruntimeconfig.cache
 I:\NZWalks\NZWalks\NZWalks.API\obj\Release\net8.0\ref\NZWalks.API.dll
+I:\NZWalks\NZWalks\NZWalks.API\bin\Release\net8.0\MediatR.dll
+I:\NZWalks\NZWalks\NZWalks.API\bin\Release\net8.0\MediatR.Contracts.dll

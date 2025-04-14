@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using NZWalks.API.CQRS.Command;
+using NZWalks.API.CQRS.Query;
 using NZWalks.API.Models.Domain;
 using NZWalks.API.Models.DTO;
 
@@ -17,6 +19,11 @@ namespace NZWalks.API.Mappings
             CreateMap<UpdateWalkRequestDto, Walk>().ReverseMap();
 
             CreateMap<Difficulty,DifficultyDTO>().ReverseMap();
+
+            CreateMap<GetAllRegionsQuery, Region>().ReverseMap();
+            CreateMap<CreateRegionCommand, Region>().ReverseMap();
+            CreateMap<AddRegionRequestDto, CreateRegionCommand>().ReverseMap();
+
 
         }
     }

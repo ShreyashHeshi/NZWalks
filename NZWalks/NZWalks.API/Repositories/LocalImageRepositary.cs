@@ -16,7 +16,7 @@ namespace NZWalks.API.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<Image> Upload(Image image)
+        public async Task<Images> Upload(Images image)
         {
             var localFilePath = Path.Combine(webHostEnvironment.ContentRootPath, "Images", $"{image.FileName}{image.FileExtension}");
             // Path from System.io.Path

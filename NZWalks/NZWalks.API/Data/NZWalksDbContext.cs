@@ -18,7 +18,7 @@ namespace NZWalks.API.Data
         public DbSet<Walk> Walks { get; set; }
         // when we run entityframework core migrations these properties create tables in database
 
-        public DbSet<Image> Images { get; set; }
+        public DbSet<Images> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

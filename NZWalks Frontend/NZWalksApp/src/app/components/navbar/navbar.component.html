@@ -1,0 +1,22 @@
+<!-- Bootstrap Navbar with Logo, Regions Link, and Logout Button -->
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Brand Logo with Image -->
+    <a class="navbar-brand" routerLink="/">
+      <img src="/trek-image.png" width="40" height="40" class="d-inline-block align-top" alt="">
+      NZWalks
+    </a>
+    
+    <!-- Navigation Links - Aligned to center -->
+    <div class="navbar-nav mx-auto">
+      <a class="nav-link" routerLink="/region" routerLinkActive="active">Regions</a>
+    </div>
+    
+    <!-- Logout Button - Aligned to right -->
+    <div class="d-flex">
+      <button class="btn btn-outline-danger" (click)="logout()">
+        <i class="bi bi-box-arrow-right me-1"></i> Logout
+      </button>
+    </div>
+  </div>
+</nav>

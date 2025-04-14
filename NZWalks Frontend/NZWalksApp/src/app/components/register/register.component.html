@@ -1,0 +1,50 @@
+<div class="login-container">
+    <div class="box">
+        <h2 class="text-center">Join NZWalks</h2>
+        <h4 class="text-center m-3">Register</h4>
+        <form (ngSubmit)="register()" [formGroup]="registerForm" class="form-control">
+            <!-- Email Field -->
+            <label for="userName" class="form-label">Username (Email):</label>
+            <input type="email" id="userName" placeholder="Enter Your Email" 
+                   class="form-control" formControlName="userName">
+            <span *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)" class="text-danger">
+                <span *ngIf="userName?.errors?.['required']">*Email is required</span>
+                <span *ngIf="!userName?.errors?.['required'] && userName?.errors?.['email']">*Invalid email format</span>
+            </span>
+            <br>
+
+            <!-- Password Field -->
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" placeholder="Enter Password" id="password" 
+                   class="form-control" formControlName="password">
+            <span *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+                <span *ngIf="password?.errors?.['required']">*Password is required</span>
+                <span *ngIf="password?.errors?.['minlength']">*Password must be at least 6 characters</span>
+            </span>
+            <br>
+
+            <!-- Role Selection -->
+            <label for="roles" class="form-label">Select Role:</label>
+            <select id="roles" formControlName="selectedRole" class="form-control">
+                <option value="">-- Select a Role --</option>
+                <option *ngFor="let role of availableRoles" [value]="role">{{ role }}</option>
+            </select>
+            <span *ngIf="selectedRole?.invalid && (selectedRole?.dirty || selectedRole?.touched)" class="text-danger">
+                <span *ngIf="selectedRole?.errors?.['required']">*Role selection is required</span>
+            </span>
+            <div *ngIf="isLoadingRoles" class="text-info">Loading roles...</div>
+            <br>
+
+            <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid || isLoadingSubmit">
+                <span *ngIf="!isLoadingSubmit">Register</span>
+                <span *ngIf="isLoadingSubmit" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span *ngIf="isLoadingSubmit"> Registering...</span>
+            </button>
+        </form>
+
+        <h6 class="text-center m-3">Already have an account? <a routerLink="/login">Login here</a></h6>
+
+        <p *ngIf="message" class="text-center" [class.text-success]="message.includes('success')" 
+           [class.text-danger]="message.includes('failed')">{{ message }}</p>
+    </div>
+</div>

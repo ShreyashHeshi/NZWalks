@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using NZWalks.API.Models;
 
 
 namespace NZWalks.API.Data
 {
     public class NZWalksAuthDbContext : IdentityDbContext // inherit from Microsoft.AspNetCore.Identity.EntityFrameworkCore
     {
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         public NZWalksAuthDbContext(DbContextOptions<NZWalksAuthDbContext> options) : base(options) // used when we inject the DbContext in program.cs
         {
         }
@@ -39,6 +42,15 @@ namespace NZWalks.API.Data
 
             builder.Entity<IdentityRole>().HasData(roles);
             // entityframeworkcore migration will add/seed this roles data in database
+
+            // Configure RefreshToken entity
+            builder.Entity<RefreshToken>(entity =>
+            {
+                entity.HasOne(rt => rt.User)
+                    .WithMany()
+                    .HasForeignKey(rt => rt.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
         }
     }
 }

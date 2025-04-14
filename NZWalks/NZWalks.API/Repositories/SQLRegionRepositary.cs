@@ -14,11 +14,19 @@ namespace NZWalks.API.Repositories
             
         }
 
-        public async Task<List<Region>> GetAllAsync()
+        public async Task<int> GetTotalCountAsync()
         {
-           return await dbContext.Regions.ToListAsync();
-
+            return await dbContext.Regions.CountAsync();
         }
+
+        public async Task<List<Region>> GetAllAsync(int page, int pageSize)
+        {
+            return await dbContext.Regions
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
 
         public async Task<Region?> GetByIdAsync(Guid id)
         {

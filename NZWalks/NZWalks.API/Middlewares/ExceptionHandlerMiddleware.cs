@@ -17,6 +17,7 @@ namespace NZWalks.API.Middlewares
         {
             try
             {
+                logger.LogWarning("📥 Request: " + httpContext.Request.Method + " " + httpContext.Request.Path + " at " + DateTime.Now);
                 await next(httpContext);                             // if any exception occurs then we log exception in catch block
             }catch (Exception ex)
             {
@@ -34,7 +35,7 @@ namespace NZWalks.API.Middlewares
                 var error = new
                 {
                     Id = errorId,
-                    ErrorMessage = "Something went wrong!"
+                    ErrorMessage = ex.Message,
                 };
 
                 await httpContext.Response.WriteAsJsonAsync(error);  // automatic error model into json
