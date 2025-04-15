@@ -26,11 +26,6 @@ packages/
 # User-specific files
 launchSettings.json
 
-# Ignore build artifacts and cache
-*.dll
-*.cache
-*.json
-
 # Compiled output
 *.dll
 *.pdb

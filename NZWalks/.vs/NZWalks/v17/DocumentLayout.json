@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "I:\\NZWalks\\NZWalks\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|i:\\nzwalks\\nzwalks\\nzwalks.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|solutionrelative:nzwalks.api\\controllers\\regionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|i:\\nzwalks\\nzwalks\\nzwalks.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|solutionrelative:nzwalks.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|i:\\nzwalks\\nzwalks\\nzwalks.api\\controllers\\pdfexportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|solutionrelative:nzwalks.api\\controllers\\pdfexportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|i:\\nzwalks\\nzwalks\\nzwalks.api\\controllers\\qrcodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C669CC0F-A108-4AA8-999A-C81116DA7138}|NZWalks.API\\NZWalks.API.csproj|solutionrelative:nzwalks.api\\controllers\\qrcodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 592,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,47 +27,47 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            }
-          ]
-        },
-        {
-          "DockedHeight": 22,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PdfExportController.cs",
-              "DocumentMoniker": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\PdfExportController.cs",
-              "RelativeDocumentMoniker": "NZWalks.API\\Controllers\\PdfExportController.cs",
-              "ToolTip": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\PdfExportController.cs",
-              "RelativeToolTip": "NZWalks.API\\Controllers\\PdfExportController.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAgwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T12:36:30.161Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RegionsController.cs",
-              "DocumentMoniker": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\RegionsController.cs",
-              "RelativeDocumentMoniker": "NZWalks.API\\Controllers\\RegionsController.cs",
-              "ToolTip": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\RegionsController.cs",
-              "RelativeToolTip": "NZWalks.API\\Controllers\\RegionsController.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAgwDEAAAAIAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Program.cs",
+              "RelativeDocumentMoniker": "NZWalks.API\\Program.cs",
+              "ToolTip": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Program.cs",
+              "RelativeToolTip": "NZWalks.API\\Program.cs",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAAAHIAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T12:35:41.418Z",
+              "WhenOpened": "2025-04-15T07:29:17.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QrCodeController.cs",
+              "DocumentMoniker": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\QrCodeController.cs",
+              "RelativeDocumentMoniker": "NZWalks.API\\Controllers\\QrCodeController.cs",
+              "ToolTip": "I:\\NZWalks\\NZWalks\\NZWalks.API\\Controllers\\QrCodeController.cs",
+              "RelativeToolTip": "NZWalks.API\\Controllers\\QrCodeController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T07:22:15.835Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedHeight": 4,
+          "DockedHeight": 24,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 1,
           "SelectedChildIndex": -1,
           "Children": [
             {

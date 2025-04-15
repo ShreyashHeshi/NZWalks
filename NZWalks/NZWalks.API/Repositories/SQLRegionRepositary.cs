@@ -74,5 +74,11 @@ namespace NZWalks.API.Repositories
             await dbContext.SaveChangesAsync();
             return existingRegion;
         }
+
+        public async Task<Region?> GetByNameAsync(string name)
+        {
+            return await dbContext.Regions
+           .FirstOrDefaultAsync(r => r.Name.ToLower() == name.ToLower());
+        }
     }
 }

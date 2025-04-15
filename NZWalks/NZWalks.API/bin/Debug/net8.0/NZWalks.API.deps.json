@@ -17,6 +17,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "9.0.2",
           "Microsoft.IdentityModel.Tokens": "8.6.1",
           "PdfSharpCore": "1.3.67",
+          "QRCoder": "1.6.0",
+          "QRCoder-ImageSharp": "0.10.0",
           "Serilog": "4.2.0",
           "Serilog.AspNetCore": "9.0.0",
           "Serilog.Formatting.Elasticsearch": "10.0.0",
@@ -24,7 +26,6 @@
           "Serilog.Sinks.Console": "6.0.0",
           "Serilog.Sinks.Elasticsearch": "10.0.0",
           "Serilog.Sinks.File": "6.0.0",
-          "SixLabors.ImageSharp": "2.1.3",
           "Swashbuckle.AspNetCore": "6.4.0",
           "System.IdentityModel.Tokens.Jwt": "8.6.1"
         },
@@ -511,7 +512,7 @@
           "System.Runtime.Caching": "6.0.0",
           "System.Security.Cryptography.Cng": "5.0.0",
           "System.Security.Principal.Windows": "5.0.0",
-          "System.Text.Encoding.CodePages": "6.0.0",
+          "System.Text.Encoding.CodePages": "8.0.0",
           "System.Text.Encodings.Web": "9.0.2"
         },
         "runtime": {
@@ -969,7 +970,7 @@
         "dependencies": {
           "SharpZipLib": "1.4.2",
           "SixLabors.Fonts": "1.0.0-beta17",
-          "SixLabors.ImageSharp": "2.1.3"
+          "SixLabors.ImageSharp": "2.0.0"
         },
         "runtime": {
           "lib/net8.0/PdfSharpCore.dll": {
@@ -981,6 +982,20 @@
           "lib/net8.0/de/PdfSharpCore.resources.dll": {
             "locale": "de"
           }
+        }
+      },
+      "QRCoder/1.6.0": {
+        "runtime": {
+          "lib/net6.0/QRCoder.dll": {
+            "assemblyVersion": "1.6.0.0",
+            "fileVersion": "1.6.0.0"
+          }
+        }
+      },
+      "QRCoder-ImageSharp/0.10.0": {
+        "dependencies": {
+          "SixLabors.ImageSharp": "2.0.0",
+          "System.Text.Encoding.CodePages": "8.0.0"
         }
       },
       "Serilog/4.2.0": {
@@ -1148,15 +1163,15 @@
           }
         }
       },
-      "SixLabors.ImageSharp/2.1.3": {
+      "SixLabors.ImageSharp/2.0.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encoding.CodePages": "6.0.0"
+          "System.Text.Encoding.CodePages": "8.0.0"
         },
         "runtime": {
           "lib/netcoreapp3.1/SixLabors.ImageSharp.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.1.3.0"
+            "fileVersion": "2.0.0.0"
           }
         }
       },
@@ -1427,11 +1442,7 @@
         }
       },
       "System.Security.Principal.Windows/5.0.0": {},
-      "System.Text.Encoding.CodePages/6.0.0": {
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
-        }
-      },
+      "System.Text.Encoding.CodePages/8.0.0": {},
       "System.Text.Encodings.Web/9.0.2": {
         "runtime": {
           "lib/net8.0/System.Text.Encodings.Web.dll": {
@@ -1937,6 +1948,20 @@
       "path": "pdfsharpcore/1.3.67",
       "hashPath": "pdfsharpcore.1.3.67.nupkg.sha512"
     },
+    "QRCoder/1.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XmPA81eo+oRxBuyVdswsSkTGTE1d3thfF11Z1PdD7oB56A6HU4G4AAOdySmGRMb/cljwlFTMWUtosGEnwpS6GA==",
+      "path": "qrcoder/1.6.0",
+      "hashPath": "qrcoder.1.6.0.nupkg.sha512"
+    },
+    "QRCoder-ImageSharp/0.10.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Gk45RWAK/XIg5PjhlU8IusuYYiZmvzL1pPTH+FG2/Q3anTlIATWoCx5yqKsEFhZUz9mn+Sa2MPvawpqxVx10HA==",
+      "path": "qrcoder-imagesharp/0.10.0",
+      "hashPath": "qrcoder-imagesharp.0.10.0.nupkg.sha512"
+    },
     "Serilog/4.2.0": {
       "type": "package",
       "serviceable": true,
@@ -2035,12 +2060,12 @@
       "path": "sixlabors.fonts/1.0.0-beta17",
       "hashPath": "sixlabors.fonts.1.0.0-beta17.nupkg.sha512"
     },
-    "SixLabors.ImageSharp/2.1.3": {
+    "SixLabors.ImageSharp/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8yonNRWX3vUE9k29ta0Hbfa0AEc0hbDjSH/nZ3vOTJEXmY6hLnGsjDKoz96Z+AgOsrdkAu6PdL/Ebaf70aitzw==",
-      "path": "sixlabors.imagesharp/2.1.3",
-      "hashPath": "sixlabors.imagesharp.2.1.3.nupkg.sha512"
+      "sha512": "sha512-hZmADrZvn1q9tjPNuuvvl8F8vkz+LFEhnfBkuvwq6Bjgyj3BcOBk6ct4qfssrs25vWIITeH1HkIVdcCYWacpLw==",
+      "path": "sixlabors.imagesharp/2.0.0",
+      "hashPath": "sixlabors.imagesharp.2.0.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.4.0": {
       "type": "package",
@@ -2259,12 +2284,12 @@
       "path": "system.security.principal.windows/5.0.0",
       "hashPath": "system.security.principal.windows.5.0.0.nupkg.sha512"
     },
-    "System.Text.Encoding.CodePages/6.0.0": {
+    "System.Text.Encoding.CodePages/8.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZFCILZuOvtKPauZ/j/swhvw68ZRi9ATCfvGbk1QfydmcXBkIWecWKn/250UH7rahZ5OoDBaiAudJtPvLwzw85A==",
-      "path": "system.text.encoding.codepages/6.0.0",
-      "hashPath": "system.text.encoding.codepages.6.0.0.nupkg.sha512"
+      "sha512": "sha512-OZIsVplFGaVY90G2SbpgU7EnCoOO5pw1t4ic21dBF3/1omrJFpAGoNAVpPyMVOC90/hvgkGG3VFqR13YgZMQfg==",
+      "path": "system.text.encoding.codepages/8.0.0",
+      "hashPath": "system.text.encoding.codepages.8.0.0.nupkg.sha512"
     },
     "System.Text.Encodings.Web/9.0.2": {
       "type": "package",

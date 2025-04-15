@@ -202,3 +202,4 @@ I:\NZWalks\NZWalks\NZWalks.API\bin\Debug\net8.0\ICSharpCode.SharpZipLib.dll
 I:\NZWalks\NZWalks\NZWalks.API\bin\Debug\net8.0\SixLabors.Fonts.dll
 I:\NZWalks\NZWalks\NZWalks.API\bin\Debug\net8.0\SixLabors.ImageSharp.dll
 I:\NZWalks\NZWalks\NZWalks.API\bin\Debug\net8.0\de\PdfSharpCore.resources.dll
+I:\NZWalks\NZWalks\NZWalks.API\bin\Debug\net8.0\QRCoder.dll
