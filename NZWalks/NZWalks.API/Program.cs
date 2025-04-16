@@ -19,6 +19,7 @@ using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
 using NZWalk.Api.Services;
 using NZWalks.API.Services;
+using NZWalks.API.Models.Domain;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -113,6 +114,8 @@ builder.Services.AddScoped<ITokenRepositary,TokenRepositary>();
 builder.Services.AddScoped<IImageRepositary,LocalImageRepositary>();
 builder.Services.AddScoped<IPdfGenerator, PdfGenerator>();
 builder.Services.AddScoped<IQrCodeService, QrCodeService>();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 

@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using NZWalks.API.CQRS.Command;
 using NZWalks.API.Models.DTO;
 using NZWalks.API.Repositories;
+using NZWalks.API.Services;
 
 namespace NZWalks.API.Controllers
 {
@@ -20,13 +21,15 @@ namespace NZWalks.API.Controllers
         private readonly ITokenRepositary tokenRepositary;
         private readonly IMediator mediator;
         private readonly RoleManager<IdentityRole> roleManger;
+        private readonly IEmailService emailService;
 
-        public AuthController(UserManager<IdentityUser> userManager, ITokenRepositary tokenRepositary, IMediator mediator, RoleManager<IdentityRole> roleManger)
+        public AuthController(UserManager<IdentityUser> userManager, ITokenRepositary tokenRepositary, IMediator mediator, RoleManager<IdentityRole> roleManger, IEmailService emailService)
         {
             this.userManager = userManager;
             this.tokenRepositary = tokenRepositary;
             this.mediator = mediator;
             this.roleManger = roleManger;
+            this.emailService = emailService;
         }
 
 
@@ -40,6 +43,12 @@ namespace NZWalks.API.Controllers
             {
                 return BadRequest(new { message = "User registration failed. Please try again." });
             }
+
+            await emailService.SendEmailAsync(
+            registerRequestDto.UserName,
+            "Registration Successful",
+            $"<h2>Welcome to NZ Walks!</h2><p>Hi {registerRequestDto.UserName}, your registration was successful 🎉</p>"
+   );
 
             return Ok(new { message = "User was registered successfully. Please login." });
             //return Ok(registerUser);
@@ -80,6 +89,8 @@ namespace NZWalks.API.Controllers
             {
                 return BadRequest("username and password not match");
             }
+
+
             return Ok(loginUser);
 
 
