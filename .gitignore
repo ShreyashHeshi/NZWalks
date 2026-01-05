@@ -28,3 +28,8 @@ build/
 .vite/
 .vite/deps/
 *.tsbuildinfo
+
+# Dev / demo / local-only files
+NZWalks/NZWalks.API/NZWalks.API.http
+NZWalks/NZWalks.API/WeatherForecast.cs
+NZWalks/NZWalks.API/appsettings.Development.json
