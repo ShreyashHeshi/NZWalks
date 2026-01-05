@@ -18,3 +18,7 @@ project.nuget.cache
 
 # VS Code
 .vscode/
+/NZWalks/NZWalks.API/appsettings.Development.json
+/NZWalks/NZWalks.API/WeatherForecast.cs
+/NZWalks/NZWalks.API/NZWalks.API.http
+/NZWalks/NZWalks.API/Logs
