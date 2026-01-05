@@ -1,32 +1,20 @@
-# Visual Studio files
+# Visual Studio
 .vs/
-*.suo
 *.user
-*.userosscache
+*.csproj.user
 
-# Build outputs
+# Build output
 bin/
 obj/
-[Dd]ebug/
-[Rr]elease/
 
-# NuGet packages
-*.nupkg
-packages/
-
-# Local development files
-*.swp
-*.cache
-*.lock.json
-
-# IDE specific
-.idea/
-.vscode/
-
-# User-specific files
-launchSettings.json
-
-# Compiled output
+# Compiled binaries
 *.dll
-*.pdb
 *.exe
+*.pdb
+
+# NuGet
+project.assets.json
+project.nuget.cache
+
+# VS Code
+.vscode/
