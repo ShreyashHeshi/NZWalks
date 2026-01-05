@@ -19,5 +19,12 @@ Logs/
 # VS Code
 .vscode/
 
-# Frontend dependencies (if applicable)
+# Frontend (Angular / Vite)
 node_modules/
+.angular/
+.angular/cache/
+dist/
+build/
+.vite/
+.vite/deps/
+*.tsbuildinfo
