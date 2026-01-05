@@ -1,1 +1,23 @@
+# Visual Studio
 .vs/
+*.user
+*.csproj.user
+
+# Build output
+bin/
+obj/
+
+# Compiled binaries
+*.dll
+*.exe
+*.pdb
+
+# Logs
+Logs/
+*.log
+
+# VS Code
+.vscode/
+
+# Frontend dependencies (if applicable)
+node_modules/
