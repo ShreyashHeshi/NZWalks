@@ -12,13 +12,24 @@ obj/
 *.exe
 *.pdb
 
-# NuGet
-project.assets.json
-project.nuget.cache
+# Logs
+Logs/
+*.log
 
 # VS Code
 .vscode/
-/NZWalks/NZWalks.API/appsettings.Development.json
-/NZWalks/NZWalks.API/WeatherForecast.cs
-/NZWalks/NZWalks.API/NZWalks.API.http
-/NZWalks/NZWalks.API/Logs
+
+# Frontend (Angular / Vite)
+node_modules/
+.angular/
+.angular/cache/
+dist/
+build/
+.vite/
+.vite/deps/
+*.tsbuildinfo
+
+# Dev / demo / local-only files
+NZWalks/NZWalks.API/NZWalks.API.http
+NZWalks/NZWalks.API/WeatherForecast.cs
+NZWalks/NZWalks.API/appsettings.Development.json
